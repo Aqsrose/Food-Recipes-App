@@ -42,6 +42,9 @@ public class SignInController {
         try(Response response = client.newCall(request).execute()){
             return new SignInController(response.body().string(), response.code());
         }
+        catch(Exception exception){
+            return new SignInController(null, -1);
+        }
     }
     public String buildJson(String username, String password) {
         return "{" +

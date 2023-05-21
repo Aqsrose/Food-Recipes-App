@@ -10,37 +10,51 @@ router.get("/", function (req, res, next) {
   res.json({ res: "ok", purpose: "should respond with the list of users" });
 });
 
+router.post("/signup", async(req, res, next)=>{
+
+})
+
 router.post("/login", async (req, res, next) => {
-  console.log("Data recieved on backend: ", req.body);
+
+  const {username, password} = req.body;
+
+  //server side validation
+  if(!username || !password){
+    res.status(403).json({ res: "ok", success: false, msg: "please fill in all the fields" });
+    return;
+  }
+
   //perform database stuff here
   let user = await prisma.users.findFirst({
     where: {
       OR: [
         {
-          userName: req.body.username,
+          userName: username,
         },
         {
-          userEmail: req.body.username,
+          userEmail: username,
         },
       ],
     },
   });
 
   if(!user){
-    res.status(404).json({res: "ok", msg: "user doesn't exist" });
+    res.status(404).json({res: "ok", success: false, msg: "user doesn't exist" });
     return;
   }
 
-  const match = await bcrypt.compare(req.body.password, user.userPassword);
+  const match = await bcrypt.compare(password, user.userPassword);
 
   if (match){
     console.log("successful");
-    res.status(200).json({ res: "ok", msg: "success", user: {name: user.userName, email: user.userEmail} });
+    res.status(200).json({ res: "ok", success: true, user: {name: user.userName, email: user.userEmail} });
     return;
   }
-  else
-    res.status(401).json({ res: "ok", msg: "unauthorized" });
+  else{
+    res.status(401).json({ res: "ok", success: false, msg: "unauthorized" });
     return;
+  }
+
 });
 
 module.exports = router;

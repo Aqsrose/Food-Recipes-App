@@ -1,15 +1,22 @@
 package com.example.project;
 
+import static com.basgeekball.awesomevalidation.ValidationStyle.BASIC;
+import static com.basgeekball.awesomevalidation.ValidationStyle.COLORATION;
+import static com.basgeekball.awesomevalidation.ValidationStyle.UNDERLABEL;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.se.omapi.Session;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.basgeekball.awesomevalidation.AwesomeValidation;
+import com.basgeekball.awesomevalidation.utility.RegexTemplate;
 import com.example.project.controllers.SignInController;
 import com.example.project.session.SessionManager;
 import com.google.android.material.snackbar.Snackbar;
@@ -25,6 +32,7 @@ public class SignIn extends AppCompatActivity {
     Button btnSignIn;
 
     EditText etUsername;
+    EditText etPassword;
 
     @Override
     protected void onStart() {
@@ -37,8 +45,6 @@ public class SignIn extends AppCompatActivity {
             moveToMainActivity();
     }
 
-    EditText etPassword;
-
     //made a separate function bc it's being used twice
     private void moveToMainActivity(){
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
@@ -46,6 +52,19 @@ public class SignIn extends AppCompatActivity {
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
         finish(); //because we don't want to return here after login
+    }
+
+    private boolean validate(){
+        //String regexPassword = "(?=.*[a-z])(?=.*[A-Z])(?=.*[\\d])(?=.*[~`!@#\\$%\\^&\\*\\(\\)\\-_\\+=\\{\\}\\[\\]\\|\\;:\"<>,./\\?]).{8,}";
+
+        AwesomeValidation validator = new AwesomeValidation(BASIC); //for displaying error msg under the input field
+
+        validator.addValidation(etUsername, RegexTemplate.NOT_EMPTY, "This field is required");
+        validator.addValidation(etUsername, Patterns.EMAIL_ADDRESS, "Please enter a valid email");
+
+        validator.addValidation(etPassword, RegexTemplate.NOT_EMPTY, "This field is required");
+
+        return validator.validate();
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +84,10 @@ public class SignIn extends AppCompatActivity {
             public void onClick(View view) {
                 String username = etUsername.getText().toString().trim();
                 String password = etPassword.getText().toString().trim();
+
+                if(!validate()){
+                    return;
+                }
 
                 SignInController signInController = new SignInController();
                 String json = signInController.buildJson(username, password);
@@ -99,6 +122,9 @@ public class SignIn extends AppCompatActivity {
                             sessionManager.saveSession(user.get("email").toString());
                             moveToMainActivity();
                         }
+                    }
+                    else if(responses.get().getResponseCode() == -1){
+                        Snackbar.make(btnSignIn, "Error connecting to server", Snackbar.LENGTH_LONG).show();
                     }
                     else{
                         Snackbar.make(btnSignIn, "Server error. Please try again.", Snackbar.LENGTH_LONG).show();
