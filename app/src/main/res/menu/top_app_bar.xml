@@ -1,0 +1,29 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/favorite"
+        android:contentDescription="favourites"
+        android:icon="@drawable/ic_heart"
+        android:title="favourite"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/search"
+        android:contentDescription="search"
+        android:icon="@drawable/ic_search"
+        android:title="search"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/more"
+        android:contentDescription="menu"
+        android:title="more"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/somethingElse"
+        android:contentDescription="another option"
+        android:title="another option"
+        app:showAsAction="never" />
+
+</menu>

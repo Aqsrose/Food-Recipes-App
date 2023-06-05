@@ -21,7 +21,7 @@
         tools:layout_editor_absoluteY="36dp" />
 
     <EditText
-        android:id="@+id/etUsernameSignin"
+        android:id="@+id/etEmailSignin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -29,7 +29,7 @@
         android:layout_marginTop="30dp"
         android:layout_marginRight="26dp"
         android:ems="10"
-        android:hint="Username"
+        android:hint="Email"
         android:includeFontPadding="true"
         android:inputType="textPersonName"
         android:paddingTop="10dp"
@@ -65,16 +65,34 @@
         android:text="forget password"
         android:textColor="#FF5722" />
 
-    <Button
-        android:id="@+id/btnSignIn"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="26dp"
-        android:layout_marginRight="26dp"
-        android:backgroundTint="#ff6b00"
-        android:padding="10dp"
-        android:text="Log In"
-        android:textSize="20sp" />
+        android:orientation="vertical"
+        android:paddingLeft="26dp"
+        android:paddingTop="20dp"
+        android:paddingRight="26dp"
+        android:paddingBottom="20dp">
+
+        <Button
+            android:id="@+id/btnSignIn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:backgroundTint="#ff6b00"
+            android:padding="10dp"
+            android:text="Sign Up"
+            android:textSize="20sp" />
+
+        <ProgressBar
+            android:id="@+id/progressBarSignIn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:indeterminateDrawable="@drawable/spinner"
+            android:visibility="gone" />
+    </LinearLayout>
+
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -98,8 +116,6 @@
             android:text="Sign Up"
             android:textColor="#FF5722" />
     </RelativeLayout>
-
-
 
 
 </LinearLayout>

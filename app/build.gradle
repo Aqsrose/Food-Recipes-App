@@ -1,5 +1,6 @@
 plugins {
     id 'com.android.application'
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -26,19 +27,30 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    buildFeatures {
+        viewBinding true
+    }
 }
 
 dependencies {
 
     implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'com.google.android.material:material:1.8.0'  // material design
-    implementation 'com.squareup.okhttp3:okhttp:4.10.0'         // for http requests
-    implementation 'com.google.code.gson:gson:2.10.1'          // for json parsing
-    implementation 'com.basgeekball:awesome-validation:4.3'   // for front-end validation
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.preference:preference:1.2.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.recyclerview:recyclerview:1.2.1'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
     implementation 'androidx.appcompat:appcompat:1.4.0'
-
+    implementation 'com.google.android.material:material:1.9.0'  // material design
+    implementation 'com.squareup.okhttp3:okhttp:4.10.0'         // for http requests
+    implementation 'com.google.code.gson:gson:2.10.1'          // for json parsing
+    implementation 'com.basgeekball:awesome-validation:4.3'   // for front-end validation
+    implementation platform('com.google.firebase:firebase-bom:32.1.0')
+    //for managing firebase related versions
+    implementation 'com.google.firebase:firebase-firestore' //clearly for firestore database
+    implementation 'com.google.firebase:firebase-storage' //for cloud storage -- image hosting
+    implementation 'com.google.firebase:firebase-auth' //for user auth
+    implementation 'com.squareup.picasso:picasso:2.71828' // For image loading and resizing
 }
