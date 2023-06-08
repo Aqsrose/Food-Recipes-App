@@ -69,7 +69,7 @@ public class SignUp extends AppCompatActivity {
     }
 
     void createUser(String userId, String username, String imageUrl) {
-        User user = new User(userId, username, imageUrl);
+        User user = new User(username, imageUrl);
         //get the collection reference
         CollectionReference userReference = db.collection("users");
         userReference.document(userId)

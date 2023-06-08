@@ -3,19 +3,13 @@ package com.example.project.models;
 public class User {
 
 
-    public User(String userId, String username, String imageUrl) {
-        this.userId = userId;
+    public User(String username, String imageUrl) {
         this.username = username;
         this.imageUrl = imageUrl;
     }
 
-    String userId;
     String username;
     String imageUrl;
-
-    public String getUserId() {
-        return userId;
-    }
 
     public String getUsername() {
         return username;
@@ -23,10 +17,6 @@ public class User {
 
     public String getImageUrl() {
         return imageUrl;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
     }
 
     public void setUsername(String username) {

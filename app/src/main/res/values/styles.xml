@@ -3,5 +3,7 @@
 
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="android:statusBarColor">#F86A04</item>
+        <item name="colorPrimary">@color/orange</item>
+        <item name="colorSecondary">@color/teal_200</item>
     </style>
 </resources>

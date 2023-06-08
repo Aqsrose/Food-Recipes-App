@@ -19,4 +19,12 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <string-array name="category_spinner_items">
+        <item>Cake</item>
+        <item>Soup</item>
+        <item>Sauce</item>
+        <item>Beverage</item>
+    </string-array>
+
+
 </resources>
