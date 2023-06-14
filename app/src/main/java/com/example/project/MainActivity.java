@@ -69,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
         recipeRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
 
+        //setting up toolbar and navigation drawer
         setSupportActionBar(toolbar);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_open, R.string.navigation_close);
         drawerLayout.addDrawerListener(toggle);
@@ -97,8 +98,7 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
 
-
-                //to hold the cards
+                //to hold the cards data
                 List<CardDataModel> cardList = new ArrayList<>();
                 // Iterate over the documents in the query snapshot
                 for (DocumentSnapshot document : querySnapshot.getDocuments()) {
@@ -132,4 +132,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+
 }
