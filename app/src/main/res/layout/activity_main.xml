@@ -29,9 +29,48 @@
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     android:background="#ff6b00"
-                    app:menu="@menu/top_app_bar"
                     app:navigationIcon="@drawable/ic_burger"
-                    app:title="Recipes" />
+                    app:title="Recipes">
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginRight="10dp"
+                        android:gravity="end">
+
+                        <ImageButton
+                            android:id="@+id/searchIcon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_search"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:background="@android:color/transparent"
+                            android:layout_marginRight="65dp"
+                            android:contentDescription="search recipes"/>
+
+                        <ImageButton
+                            android:id="@+id/heartIcon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_heart"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:background="@android:color/transparent"
+                            android:layout_marginRight="35dp"
+                            android:contentDescription="bookmark recipes"/>
+
+                        <ImageButton
+                            android:id="@+id/menuIcon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/baseline_more_vert_24"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:background="@android:color/transparent"
+                            android:contentDescription="open app settings"/>
+                    </RelativeLayout>
+                </androidx.appcompat.widget.Toolbar>
             </com.google.android.material.appbar.AppBarLayout>
 
             <androidx.recyclerview.widget.RecyclerView

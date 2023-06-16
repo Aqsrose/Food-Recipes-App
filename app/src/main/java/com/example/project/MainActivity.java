@@ -103,6 +103,7 @@ public class MainActivity extends AppCompatActivity {
                 // Iterate over the documents in the query snapshot
                 for (DocumentSnapshot document : querySnapshot.getDocuments()) {
                     // Extract the necessary data from the document
+                    String recipeId = document.getId();
                     String title = document.getString("title");
                     String imageUrl = document.getString("image");
                     //List<String> category = (List<String>) document.get("category");
@@ -112,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
 
                     Log.d("Recipe Category", category);
                     // Create a CardDataModel object with the extracted data
-                    CardDataModel cardDataModel = new CardDataModel(title, imageUrl, category, detail, time);
+                    CardDataModel cardDataModel = new CardDataModel(recipeId, title, imageUrl, category, detail, time);
                     // Add the CardDataModel object to the adapter
                     cardList.add(cardDataModel);
                 }

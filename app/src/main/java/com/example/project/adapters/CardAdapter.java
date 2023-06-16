@@ -18,10 +18,12 @@ import com.example.project.MainActivity;
 import com.example.project.R;
 import com.example.project.Recipe;
 import com.example.project.custom_views.CardViewHolder;
+import com.example.project.models.Bookmark;
 import com.example.project.models.CardDataModel;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -31,12 +33,13 @@ import com.squareup.picasso.Picasso;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.sql.Time;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class CardAdapter extends RecyclerView.Adapter<CardViewHolder> {
     private List<CardDataModel> data;
-    AtomicReference<byte[]> imageReference;
+    FirebaseAuth auth;
 
 
     public CardAdapter(List<CardDataModel> data) {
@@ -62,7 +65,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardViewHolder> {
         holder.timeTextView.setText(item.getTime());
         holder.chipCategoryView.setText(item.getCategories());
 
-        FirebaseStorage storage = FirebaseStorage.getInstance();
+        auth = FirebaseAuth.getInstance();
         StorageReference storageReference = FirebaseStorage.getInstance().getReferenceFromUrl(item.getImageUrl());
         File localFile;
         try {
@@ -84,6 +87,20 @@ public class CardAdapter extends RecyclerView.Adapter<CardViewHolder> {
             }
         });
 
+
+        holder.btnBookmarkView.setOnClickListener((view)->{
+            //add bookmark functionality here
+            //getting recipe id to include as a foreign key
+            String userId = auth.getUid(); // user id
+            String recipeId = item.getRecipeId();
+            //String createdAt = String.valueOf(new Time(current time here));
+            String createdAt = "Current Time";
+            Bookmark bookmark = new Bookmark(userId, recipeId, createdAt);
+
+            //create database object
+            //get collection reference
+            //upload bookmark to database
+        });
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             byte[] imageData;
 

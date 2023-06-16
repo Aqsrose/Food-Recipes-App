@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CardDataModel {
+    private String recipeId;
     private String title;
     private String imageUrl;
     //private List<String> categories;
@@ -11,7 +12,8 @@ public class CardDataModel {
     private String detail;
     private String time;
 
-    public CardDataModel(String title, String imageUrl, String categories, String detail, String time) {
+    public CardDataModel(String recipeId, String title, String imageUrl, String categories, String detail, String time) {
+        this.recipeId = recipeId;
         this.title = title;
         this.imageUrl = imageUrl;
         //this.categories = new ArrayList<String>(); //change this back to array maybe?
@@ -20,6 +22,11 @@ public class CardDataModel {
         this.time = time;
     }
 
+
+
+    public void setId(String recipeId) {
+        this.recipeId = recipeId;
+    }
     public void setTitle(String title) {
         this.title = title;
     }
@@ -40,6 +47,10 @@ public class CardDataModel {
         this.time = time;
     }
 
+
+    public String getRecipeId() {
+        return recipeId;
+    }
     public String getTitle() {
         return title;
     }
